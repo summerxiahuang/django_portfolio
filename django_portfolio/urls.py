@@ -24,6 +24,8 @@ urlpatterns = [
     path('', include('main.urls')),
 ]
 
+
+
 # Serve static files during development
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
@@ -32,3 +34,6 @@ if settings.DEBUG:
 # Serve static files in production (for platforms that don't handle it automatically)
 if not settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# Serve media files in production (safe with Render Disk)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
