@@ -24,11 +24,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'unsafe-default')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', '') == 'True'
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
 #ALLOWED_HOSTS = ['.elasticbeanstalk.com', '127.0.0.1','localhost']
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS')
+if not ALLOWED_HOSTS:
+    ALLOWED_HOSTS = ['localhost','127.0.0.1','0.0.0.0']
+else:
+    ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS.split(',') if host.strip()]
+
 # ALLOWED_HOSTS += ['.elasticbeanstalk.com', '127.0.0.1', 'localhost', '0.0.0.0']
 # Application definition
 
@@ -44,6 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this line for Whitenoise
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
