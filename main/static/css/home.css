@@ -5,12 +5,12 @@
     align-items: flex-start;
     margin-bottom: 2rem;
 }
-#search {
+#name-search {
     padding: 0.6rem 1rem;
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     width: 100%;
     max-width: 350px;
 }
@@ -29,6 +29,7 @@
     padding: 1.5rem 1.2rem 1.2rem 1.2rem;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: flex-start;
     transition: box-shadow 0.2s;
     width: 100%;
@@ -65,4 +66,50 @@
 }
 .project-card a:hover {
     color: #222;
+}
+.project-tags {
+    margin-top: auto;
+    padding-top: 0.7rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+}
+.tag-label {
+    font-size: 0.95rem;
+    color: #888;
+    margin-right: 0.4rem;
+}
+.tag {
+    background: #f5f5f5;
+    border: none;
+    border-radius: 4px;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.95rem;
+    color: #444;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.tag:hover {
+    background: #ffb347;
+    color: #fff;
+}
+.project-links {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 0.7rem;
+}
+.project-link, .github-link {
+    display: inline-block;
+    padding: 0.3rem 1.2rem;
+    border-radius: 5px;
+    background: #f5f5f5;
+    color: #444;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+.project-link:hover, .github-link:hover {
+    background: #ffb347;
+    color: #fff;
 }

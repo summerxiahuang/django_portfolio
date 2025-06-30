@@ -11,11 +11,16 @@
 <div class="project-card">
     <div class="project-info">
         <h1>{{ project.title }}</h1>
+        <div class="project-links">
+            {% if project.live_url %}
+                <a href="{{ project.live_url }}" target="_blank" rel="noopener" class="project-link">Live Project</a>
+            {% endif %}
+            {% if project.github_url %}
+                <a href="{{ project.github_url }}" target="_blank" rel="noopener" class="github-link">GitHub</a>
+            {% endif %}
+        </div>
         <p>
-            <a href="{{project.link}}">Project Link</a>
-        </p>
-        <p>
-            {{ project.description}}
+            {{ project.description }}
         </p>
         <a href="{% url 'home' %}" class="back-link">Back to Home</a>
     </div>

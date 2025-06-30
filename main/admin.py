@@ -9,7 +9,7 @@ class ProjectImageInline(admin.TabularInline):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'url')
+    list_display = ('title', 'description', 'live_url', 'github_url')
     inlines = [ProjectImageInline]
     search_fields = ('title', 'description')
     list_filter = ('tags',)

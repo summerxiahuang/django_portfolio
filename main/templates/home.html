@@ -17,14 +17,21 @@
         <h3>{{ project.title }}</h3>
         {% with first_image=project.images.first %}
             {% if first_image %}
-                <a href="{% url 'project' project.id %}">
-                    <img src="{{ first_image.image.url }}" alt="{{ project.title }}" class="project-thumbnail">
-                </a>
+                <img src="{{ first_image.image.url }}" alt="{{ project.title }}" class="project-thumbnail">
             {% endif %}
         {% endwith %}
         <p>{{ project.description }}</p>
-        <a href="{% url 'project' project.id %}">View Details</a>
-        <div class="project-tags">
+        <div class="project-links">
+            {% if project.live_url %}
+                <a href="{{ project.live_url }}" target="_blank" rel="noopener" class="project-link">Live Project</a>
+            {% endif %}
+        </div>
+        <div class="project-links">
+            {% if project.github_url %}
+                <a href="{{ project.github_url }}" target="_blank" rel="noopener" class="project-link">GitHub</a>
+            {% endif %}
+        </div>
+        <div class="project-tags" style="margin-top:auto;width:100%;">
             <span class="tag-label">Tags:</span>
             {% for tag in project.tags.all %}
                 <button class="tag" data-tag="{{ tag.name|lower }}" type="button">{{ tag.name }}</button>

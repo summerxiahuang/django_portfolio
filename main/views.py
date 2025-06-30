@@ -142,12 +142,3 @@ Your Portfolio
     
     return render(request, 'contact.html')
 
-def project(request, project_id):
-    project = Project.objects.get(id=project_id)
-    
-    context = {
-        'project': project,
-    }
-    
-    return render(request, 'project.html', context)
-

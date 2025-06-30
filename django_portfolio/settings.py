@@ -120,15 +120,16 @@ STATIC_URL = '/static/'
 # Static files configuration for production
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Additional locations of static files
+# Additional locations of static files (prioritize app-specific files)
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'main', 'static'),  # App-specific static files first
+    os.path.join(BASE_DIR, 'static'),          # Global static files second
 ]
 
-# Static files finders
+# Static files finders (order matters - app directories first)
 STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',  # App-specific files first
+    'django.contrib.staticfiles.finders.FileSystemFinder',      # Global files second
 ]
 
 # Default primary key field type
