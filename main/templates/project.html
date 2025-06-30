@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Project Page{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/project.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<div class="project-card">
+    <div class="project-info">
+        <h1>{{ project.title }}</h1>
+        <p>
+            <a href="{{project.link}}">Project Link</a>
+        </p>
+        <p>
+            {{ project.description}}
+        </p>
+        <a href="{% url 'home' %}" class="back-link">Back to Home</a>
+    </div>
+    <div class="project-images">
+        {% for image in project.images.all %}
+            <img src="{{ image.image.url }}" alt="{{ project.title }}" class="project-image">
+        {% empty %}
+            <p>No images available for this project.</p>
+        {% endfor %}
+    </div>
+    <p>{{ project.description }}</p>
+    <div class="project-tags">
+        {% for tag in project.tags.all %}
+            <span class="tag">{{ tag.name }}</span>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

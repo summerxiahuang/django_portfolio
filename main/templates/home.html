@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="filters">
+    <input type="text" id="name-search" placeholder="Search projects...">
+    <div class="tag-list">
+        {% for tag in tags %}
+            <button class="tag" data-tag="{{ tag.name|lower }}">{{ tag.name }}</button>
+        {% endfor %}
+    </div>
+</div>
+<div class="project-list">
+    {% for project in projects %}
+    <div class="project-card" data-tags="{% for tag in project.tags.all %}{{ tag.name|lower }}{% if not forloop.last %}, {% endif %}{% endfor %}">
+        <h3>{{ project.title }}</h3>
+        {% with first_image=project.images.first %}
+            {% if first_image %}
+                <a href="{% url 'project' project.id %}">
+                    <img src="{{ first_image.image.url }}" alt="{{ project.title }}" class="project-thumbnail">
+                </a>
+            {% endif %}
+        {% endwith %}
+        <p>{{ project.description }}</p>
+        <a href="{% url 'project' project.id %}">View Details</a>
+        <div class="project-tags">
+            <span class="tag-label">Tags:</span>
+            {% for tag in project.tags.all %}
+                <button class="tag" data-tag="{{ tag.name|lower }}" type="button">{{ tag.name }}</button>
+            {% endfor %}
+        </div>
+    </div>
+    {% empty %}
+    <p>No projects found.</p>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock extra_head %}
+
+{% block extra_scripts %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock extra_scripts %}
