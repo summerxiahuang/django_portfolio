@@ -8,8 +8,6 @@ urlpatterns = [
     path('', include('main.urls')),
 ]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = '/media'  # This matches the Render disk mount path
 # Serve static files in development
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
