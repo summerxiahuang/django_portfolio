@@ -144,7 +144,7 @@ STATICFILES_FINDERS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/media'  # Ensure this directory exists on your server
 
 # Email Configuration
 # For development: emails will be printed to console
